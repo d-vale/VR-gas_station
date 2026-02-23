@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import "@/aframe/hide-nodes.js";
 const allAssetsLoaded = ref(false);
 </script>
 
@@ -19,6 +20,7 @@ const allAssetsLoaded = ref(false);
           gltf-model="#gas-station"
           position="0 0 -5"
           scale="1 1 1"
+          hide-nodes="names: Cube030_Material022_0002, Cube030_disel_0"
         ></a-entity>
 
         <!-- Lumière centrale sous l'auvent -->
