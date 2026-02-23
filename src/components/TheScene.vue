@@ -21,7 +21,9 @@ import TheRedCar from "./TheRedCar.vue";
     ></a-entity>
 
     <TheCameraRig />
+
     <TheGasStation />
+
     <TheRedCar />
   </a-scene>
 </template>
