@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import "@/aframe/clickable.js";
+import "@/aframe/pump-grab.js";
 const allAssetsLoaded = ref(false);
 </script>
 
@@ -40,10 +41,10 @@ const allAssetsLoaded = ref(false);
         ></a-entity>
 
         <!-- Pompes -->
-        <a-entity outline-on-event clickable gltf-model="#pompe95"     position="0 0 -5" scale="1 1 1"></a-entity>
-        <a-entity outline-on-event clickable gltf-model="#pompe95plus" position="0 0 -5" scale="1 1 1"></a-entity>
-        <a-entity outline-on-event clickable gltf-model="#pompeDisel"  position="0 0 -5" scale="1 1 1"></a-entity>
-        <a-entity outline-on-event clickable gltf-model="#pompeLPG"    position="0 0 -5" scale="1 1 1"></a-entity>
+        <a-entity id="scene-pompe95"     outline-on-event clickable gltf-model="#pompe95"     pump-grab="handPump: #hand-pompe95"     visible="true"  position="0 0 -5" scale="1 1 1"></a-entity>
+        <a-entity id="scene-pompe95plus" outline-on-event clickable gltf-model="#pompe95plus"  pump-grab="handPump: #hand-pompe95plus" visible="true"  position="0 0 -5" scale="1 1 1"></a-entity>
+        <a-entity id="scene-pompeDisel"  outline-on-event clickable gltf-model="#pompeDisel"   pump-grab="handPump: #hand-pompeDisel"  visible="true"  position="0 0 -5" scale="1 1 1"></a-entity>
+        <a-entity id="scene-pompeLPG"    outline-on-event clickable gltf-model="#pompeLPG"     pump-grab="handPump: #hand-pompeLPG"    visible="true"  position="0 0 -5" scale="1 1 1"></a-entity>
 
         <!-- Lumière 1 : avant-gauche -->
         <a-entity

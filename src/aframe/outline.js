@@ -157,11 +157,15 @@ AFRAME.registerComponent('outline-on-event', {
   },
 
   onEnter: function (evt) {
-    this.el.sceneEl.components.outline.addObject(this.el);
+    const outline = this.el.sceneEl.components.outline;
+    if (!outline) return;
+    outline.addObject(this.el);
   },
 
   onLeave: function (evt) {
-    this.el.sceneEl.components.outline.removeObject(this.el);
+    const outline = this.el.sceneEl.components.outline;
+    if (!outline) return;
+    outline.removeObject(this.el);
   },
 
   remove: function () {
