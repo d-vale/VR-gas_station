@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import "@/aframe/hide-nodes.js";
+import "@/aframe/clickable.js";
 const allAssetsLoaded = ref(false);
 </script>
 
@@ -10,6 +10,22 @@ const allAssetsLoaded = ref(false);
       id="gas-station"
       src="assets/small_red_gas_station/scene.gltf"
     ></a-asset-item>
+    <a-asset-item
+      id="pompe95"
+      src="assets/pompe95.glb"
+    ></a-asset-item>
+    <a-asset-item
+      id="pompe95plus"
+      src="assets/pompe95+.glb"
+    ></a-asset-item>
+    <a-asset-item
+      id="pompeDisel"
+      src="assets/pompeDisel.glb"
+    ></a-asset-item>
+    <a-asset-item
+      id="pompeLPG"
+      src="assets/pompeLPG.glb"
+    ></a-asset-item>
   </a-assets>
 
   <template v-if="allAssetsLoaded">
@@ -17,10 +33,17 @@ const allAssetsLoaded = ref(false);
       <a-entity>
         <!-- Station-service -->
         <a-entity
+          id="gas-station-model"
           gltf-model="#gas-station"
           position="0 0 -5"
           scale="1 1 1"
         ></a-entity>
+
+        <!-- Pompes -->
+        <a-entity outline-on-event clickable gltf-model="#pompe95"     position="0 0 -5" scale="1 1 1"></a-entity>
+        <a-entity outline-on-event clickable gltf-model="#pompe95plus" position="0 0 -5" scale="1 1 1"></a-entity>
+        <a-entity outline-on-event clickable gltf-model="#pompeDisel"  position="0 0 -5" scale="1 1 1"></a-entity>
+        <a-entity outline-on-event clickable gltf-model="#pompeLPG"    position="0 0 -5" scale="1 1 1"></a-entity>
 
         <!-- Lumière 1 : avant-gauche -->
         <a-entity

@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import "../aframe/clickable.js";
+import "../aframe/outline.js";
 
 import TheCameraRig from "./TheCameraRig.vue";
 import TheGasStation from "./TheGasStation.vue";
@@ -8,7 +9,7 @@ import TheRedCar from "./TheRedCar.vue";
 </script>
 
 <template>
-  <a-scene>
+  <a-scene -outline>
     <!-- Ciel nocturne étoilé -->
     <a-sky color="#050510"></a-sky>
     <!-- Lumière ambiante très faible, teinte nuit bleue -->
