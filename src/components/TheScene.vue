@@ -2,6 +2,8 @@
 import { ref } from "vue";
 import "../aframe/clickable.js";
 import "../aframe/outline.js";
+import "../aframe/look-at.js";
+import "../aframe/score-board.js";
 
 import TheCameraRig from "./TheCameraRig.vue";
 import TheGasStation from "./TheGasStation.vue";
@@ -35,5 +37,11 @@ const allAssetsLoaded = ref(false);
     <TheCameraRig :assetsLoaded="allAssetsLoaded" />
     <TheGasStation :assetsLoaded="allAssetsLoaded" />
     <TheRedCar :assetsLoaded="allAssetsLoaded" />
+
+    <a-entity
+      score-board="timerDuration: 30000"
+      look-at="yOnly: true"
+      position="5 3.665 -5"
+    ></a-entity>
   </a-scene>
 </template>

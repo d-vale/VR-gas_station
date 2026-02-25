@@ -53,6 +53,11 @@ AFRAME.registerComponent('fuel-gauge', {
     };
     this.el.sceneEl.addEventListener('car-fuel-type', this._onFuelType);
 
+    this._onCarTimeout = () => {
+      this.el.setAttribute('visible', false);
+    };
+    this.el.sceneEl.addEventListener('car-timeout', this._onCarTimeout);
+
     this._applyLevel(this.data.level);
   },
 
@@ -73,6 +78,9 @@ AFRAME.registerComponent('fuel-gauge', {
   remove: function () {
     if (this._onFuelType) {
       this.el.sceneEl.removeEventListener('car-fuel-type', this._onFuelType);
+    }
+    if (this._onCarTimeout) {
+      this.el.sceneEl.removeEventListener('car-timeout', this._onCarTimeout);
     }
   }
 });

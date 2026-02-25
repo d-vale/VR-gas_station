@@ -98,6 +98,7 @@ AFRAME.registerComponent('car-drive', {
         this.state = 'done';
         obj.position.copy(this.PHASE3_END);
         obj.rotation.set(0, Math.PI / 2, 0);
+        this.el.sceneEl.emit('car-at-pump');
       }
     }
   },
@@ -130,6 +131,13 @@ AFRAME.registerComponent('car-depart', {
 
     this.onFuelFull = this.onFuelFull.bind(this);
     this.el.sceneEl.addEventListener('fuel-full', this.onFuelFull);
+
+    this._onCarTimeout = () => {
+      if (this.state !== 'idle') return;
+      if (this.data.gauge) this.data.gauge.setAttribute('visible', false);
+      this._beginPhase1();
+    };
+    this.el.sceneEl.addEventListener('car-timeout', this._onCarTimeout);
   },
 
   onFuelFull: function () {
@@ -187,5 +195,6 @@ AFRAME.registerComponent('car-depart', {
 
   remove: function () {
     this.el.sceneEl.removeEventListener('fuel-full', this.onFuelFull);
+    this.el.sceneEl.removeEventListener('car-timeout', this._onCarTimeout);
   }
 });

@@ -30,6 +30,12 @@ AFRAME.registerComponent('car-refuel', {
     this.el.addEventListener('mousedown', this.onMouseDown);
     // Sur la scène pour capturer le relâchement même si le curseur dérive hors de la voiture
     this.el.sceneEl.addEventListener('mouseup', this.onMouseUp);
+
+    this._onCarTimeout = () => {
+      this.filling = false;
+      this._fuelFullEmitted = true;
+    };
+    this.el.sceneEl.addEventListener('car-timeout', this._onCarTimeout);
   },
 
   onMouseDown: function () {
@@ -76,5 +82,6 @@ AFRAME.registerComponent('car-refuel', {
     this.el.removeEventListener('mousedown', this.onMouseDown);
     this.el.sceneEl.removeEventListener('mouseup', this.onMouseUp);
     this.el.sceneEl.removeEventListener('car-fuel-type', this._onFuelType);
+    this.el.sceneEl.removeEventListener('car-timeout', this._onCarTimeout);
   }
 });
