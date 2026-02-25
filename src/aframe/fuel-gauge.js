@@ -1,6 +1,7 @@
 AFRAME.registerComponent('fuel-gauge', {
   schema: {
-    level: { type: 'number', default: 0 }
+    level:    { type: 'number', default: 0 },
+    fuelType: { type: 'string', default: '?' }
   },
 
   init: function () {
@@ -36,6 +37,21 @@ AFRAME.registerComponent('fuel-gauge', {
     label.setAttribute('width', '2');
     this.el.appendChild(label);
 
+    // Fuel type label
+    const typeLabel = document.createElement('a-text');
+    typeLabel.setAttribute('value', this.data.fuelType);
+    typeLabel.setAttribute('align', 'center');
+    typeLabel.setAttribute('position', '0 -0.12 0.001');
+    typeLabel.setAttribute('color', '#ffdd55');
+    typeLabel.setAttribute('width', '2');
+    this.el.appendChild(typeLabel);
+    this.typeLabel = typeLabel;
+
+    this._onFuelType = (e) => {
+      this.el.setAttribute('fuel-gauge', 'fuelType', e.detail.fuelType);
+    };
+    this.el.sceneEl.addEventListener('car-fuel-type', this._onFuelType);
+
     this._applyLevel(this.data.level);
   },
 
@@ -43,10 +59,19 @@ AFRAME.registerComponent('fuel-gauge', {
     if (oldData.level !== this.data.level) {
       this._applyLevel(this.data.level);
     }
+    if (this.typeLabel && oldData.fuelType !== this.data.fuelType) {
+      this.typeLabel.setAttribute('value', this.data.fuelType);
+    }
   },
 
   _applyLevel: function (level) {
     if (!this.fillContainer) return;
     this.fillContainer.object3D.scale.x = Math.max(0, Math.min(1, level));
+  },
+
+  remove: function () {
+    if (this._onFuelType) {
+      this.el.sceneEl.removeEventListener('car-fuel-type', this._onFuelType);
+    }
   }
 });

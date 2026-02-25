@@ -2,6 +2,8 @@ function smoothstep(t) { return t * t * (3 - 2 * t); }
 
 // ─── Arrivée ───────────────────────────────────────────────────────────────
 
+const FUEL_TYPES = ['95', '95+', 'Diesel', 'LPG'];
+
 AFRAME.registerComponent('car-drive', {
   schema: {
     phase1Duration: { type: 'number', default: 4000 },
@@ -15,6 +17,7 @@ AFRAME.registerComponent('car-drive', {
     this.state    = 'idle';
     this.progress = 0;
     this.timer    = null;
+    this.fuelType = FUEL_TYPES[Math.floor(Math.random() * FUEL_TYPES.length)];
 
     this.PHASE1_START = new THREE.Vector3(22.028, 0, -21.387);
     this.PHASE1_END   = new THREE.Vector3(2,      0, -21.387);
@@ -46,6 +49,7 @@ AFRAME.registerComponent('car-drive', {
     this.state = 'phase1'; this.progress = 0;
     this.el.object3D.position.copy(this.PHASE1_START);
     this.el.object3D.rotation.set(0, 0, 0);
+    this.el.sceneEl.emit('car-fuel-type', { fuelType: this.fuelType });
     this.el.object3D.visible = true;
   },
   _beginPhase2: function () {
