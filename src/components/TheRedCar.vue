@@ -1,19 +1,29 @@
 <script setup>
-import { ref } from "vue";
-const allAssetsLoaded = ref(false);
+import "@/aframe/clickable.js";
+import "@/aframe/look-at.js";
+import "@/aframe/fuel-gauge.js";
+import "@/aframe/car-refuel.js";
+
+defineProps({ assetsLoaded: Boolean });
 </script>
 
 <template>
-  <a-assets @loaded="allAssetsLoaded = true">
-    <a-asset-item id="car" src="assets/generic_car.glb"></a-asset-item>
-  </a-assets>
-
-  <template v-if="allAssetsLoaded">
+  <template v-if="assetsLoaded">
     <a-entity
       gltf-model="#car"
       position="2 0 -1.82"
       scale="0.01 0.01 0.01"
       rotation="0 90 0"
+      clickable
+      car-refuel="gauge: #car-fuel-gauge"
+    ></a-entity>
+
+   <!-- Jauge de carburant -->
+    <a-entity
+      id="car-fuel-gauge"
+      fuel-gauge="level: 0"
+      look-at
+      position="2 1.8 -2.125"
     ></a-entity>
 
     <!-- Phare avant droit  -->

@@ -1,35 +1,11 @@
 <script setup>
-import { ref } from "vue";
 import "@/aframe/clickable.js";
 import "@/aframe/pump-grab.js";
-const allAssetsLoaded = ref(false);
+defineProps({ assetsLoaded: Boolean });
 </script>
 
 <template>
-  <a-assets @loaded="allAssetsLoaded = true">
-    <a-asset-item
-      id="gas-station"
-      src="assets/small_red_gas_station/scene.gltf"
-    ></a-asset-item>
-    <a-asset-item
-      id="pompe95"
-      src="assets/pompe95.glb"
-    ></a-asset-item>
-    <a-asset-item
-      id="pompe95plus"
-      src="assets/pompe95+.glb"
-    ></a-asset-item>
-    <a-asset-item
-      id="pompeDisel"
-      src="assets/pompeDisel.glb"
-    ></a-asset-item>
-    <a-asset-item
-      id="pompeLPG"
-      src="assets/pompeLPG.glb"
-    ></a-asset-item>
-  </a-assets>
-
-  <template v-if="allAssetsLoaded">
+  <template v-if="assetsLoaded">
     <a-entity data-role="nav-mesh">
       <a-entity>
         <!-- Station-service -->

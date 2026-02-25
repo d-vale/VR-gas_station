@@ -4,6 +4,7 @@ import "../aframe/hide-in-vr.js";
 import "../aframe/simple-navmesh-constraint.js";
 import "../aframe/blink-controls.js";
 import "../aframe/physx-grab.js";
+defineProps({ assetsLoaded: Boolean });
 </script>
 
 <template>
@@ -30,10 +31,12 @@ import "../aframe/physx-grab.js";
         hide-in-vr="hideInAR: false"
       ></a-entity>
       <a-entity id="dummy-hand-right" position="0.3 -0.4 -0.5">
-        <a-entity id="hand-pompe95"     gltf-model="assets/pompe95.glb"    visible="false" scale="0.3 0.3 0.3" position="-1.280 -0.110 1.620" rotation="0 90 0"></a-entity>
-        <a-entity id="hand-pompe95plus" gltf-model="assets/pompe95+.glb"   visible="false" scale="0.3 0.3 0.3" position="-1.190 -0.110 1.620" rotation="0 90 0"></a-entity>
-        <a-entity id="hand-pompeDisel"  gltf-model="assets/pompeDisel.glb" visible="false" scale="0.3 0.3 0.3" position="-1.100 -0.110 1.620" rotation="0 90 0"></a-entity>
-        <a-entity id="hand-pompeLPG"    gltf-model="assets/pompeLPG.glb"   visible="false" scale="0.3 0.3 0.3" position="-1.000 -0.110 1.620" rotation="0 90 0"></a-entity>
+        <template v-if="assetsLoaded">
+          <a-entity id="hand-pompe95"     gltf-model="#pompe95"     visible="false" scale="0.3 0.3 0.3" position="-1.280 -0.110 1.620" rotation="0 90 0"></a-entity>
+          <a-entity id="hand-pompe95plus" gltf-model="#pompe95plus" visible="false" scale="0.3 0.3 0.3" position="-1.190 -0.110 1.620" rotation="0 90 0"></a-entity>
+          <a-entity id="hand-pompeDisel"  gltf-model="#pompeDisel"  visible="false" scale="0.3 0.3 0.3" position="-1.100 -0.110 1.620" rotation="0 90 0"></a-entity>
+          <a-entity id="hand-pompeLPG"    gltf-model="#pompeLPG"    visible="false" scale="0.3 0.3 0.3" position="-1.000 -0.110 1.620" rotation="0 90 0"></a-entity>
+        </template>
       </a-entity>
       <a-entity id="dummy-hand-left" position="-0.3 -0.4 -0.5"></a-entity>
     </a-entity>
