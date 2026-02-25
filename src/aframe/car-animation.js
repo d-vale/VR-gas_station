@@ -1,6 +1,6 @@
 function smoothstep(t) { return t * t * (3 - 2 * t); }
 
-// ─── Arrivée ────────────────────────────────────────────────────────────────
+// ─── Arrivée ───────────────────────────────────────────────────────────────
 
 AFRAME.registerComponent('car-drive', {
   schema: {
@@ -19,6 +19,8 @@ AFRAME.registerComponent('car-drive', {
     this.PHASE1_START = new THREE.Vector3(22.028, 0, -21.387);
     this.PHASE1_END   = new THREE.Vector3(2,      0, -21.387);
     this.PHASE3_END   = new THREE.Vector3(2,      0,  -1.82);
+
+    this.el.object3D.visible = false;
 
     this.onEnterScene = this.onEnterScene.bind(this);
     this.el.sceneEl.addEventListener('enter-scene', this.onEnterScene);
@@ -44,6 +46,7 @@ AFRAME.registerComponent('car-drive', {
     this.state = 'phase1'; this.progress = 0;
     this.el.object3D.position.copy(this.PHASE1_START);
     this.el.object3D.rotation.set(0, 0, 0);
+    this.el.object3D.visible = true;
   },
   _beginPhase2: function () {
     this.state = 'phase2'; this.progress = 0;
@@ -161,6 +164,7 @@ AFRAME.registerComponent('car-depart', {
         this.state = 'done';
         obj.position.copy(this.PHASE3_END);
         obj.rotation.set(0, Math.PI, 0);
+        this.el.object3D.visible = false;
       }
     }
   },
