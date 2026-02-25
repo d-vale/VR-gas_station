@@ -10,6 +10,8 @@ defineProps({ assetsLoaded: Boolean });
 <template>
   <a-entity
     id="camera-rig"
+    position="-3.565 0 -5.140"
+    rotation="0 -90 0"
     movement-controls="camera: #head;"
     disable-in-vr="component: movement-controls;"
   >
