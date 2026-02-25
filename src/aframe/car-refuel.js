@@ -6,6 +6,7 @@ AFRAME.registerComponent('car-refuel', {
 
   init: function () {
     this.filling = false;
+    this._fuelFullEmitted = false;
     this.onMouseDown = this.onMouseDown.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
 
@@ -32,6 +33,10 @@ AFRAME.registerComponent('car-refuel', {
     const currentLevel = gauge.getAttribute('fuel-gauge').level;
     if (currentLevel >= 1) {
       this.filling = false;
+      if (!this._fuelFullEmitted) {
+        this._fuelFullEmitted = true;
+        this.el.sceneEl.emit('fuel-full');
+      }
       return;
     }
 
