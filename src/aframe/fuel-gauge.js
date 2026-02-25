@@ -49,6 +49,7 @@ AFRAME.registerComponent('fuel-gauge', {
 
     this._onFuelType = (e) => {
       this.el.setAttribute('fuel-gauge', 'fuelType', e.detail.fuelType);
+      this.el.setAttribute('visible', true);
     };
     this.el.sceneEl.addEventListener('car-fuel-type', this._onFuelType);
 

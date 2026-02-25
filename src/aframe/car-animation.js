@@ -28,6 +28,13 @@ AFRAME.registerComponent('car-drive', {
     this.onEnterScene = this.onEnterScene.bind(this);
     this.el.sceneEl.addEventListener('enter-scene', this.onEnterScene);
 
+    this._onCarDeparted = () => {
+      this.fuelType = FUEL_TYPES[Math.floor(Math.random() * FUEL_TYPES.length)];
+      this.state = 'idle';
+      this._scheduleStart();
+    };
+    this.el.sceneEl.addEventListener('car-departed', this._onCarDeparted);
+
     if (this.data.autostart) {
       if (this.el.sceneEl.hasLoaded) {
         this._scheduleStart();
@@ -42,7 +49,10 @@ AFRAME.registerComponent('car-drive', {
 
   _scheduleStart: function () {
     if (this.state !== 'idle' || this.timer !== null) return;
-    this.timer = setTimeout(() => this._beginPhase1(), this.data.delay);
+    this.timer = setTimeout(() => {
+      this.timer = null;
+      this._beginPhase1();
+    }, this.data.delay);
   },
 
   _beginPhase1: function () {
@@ -94,6 +104,7 @@ AFRAME.registerComponent('car-drive', {
 
   remove: function () {
     this.el.sceneEl.removeEventListener('enter-scene', this.onEnterScene);
+    this.el.sceneEl.removeEventListener('car-departed', this._onCarDeparted);
     if (this._onLoaded) this.el.sceneEl.removeEventListener('loaded', this._onLoaded);
     if (this.timer !== null) { clearTimeout(this.timer); this.timer = null; }
   }
@@ -165,10 +176,11 @@ AFRAME.registerComponent('car-depart', {
       const t = smoothstep(Math.min(1, this.progress));
       obj.position.lerpVectors(this.PHASE1_END, this.PHASE3_END, t);
       if (this.progress >= 1) {
-        this.state = 'done';
         obj.position.copy(this.PHASE3_END);
         obj.rotation.set(0, Math.PI, 0);
         this.el.object3D.visible = false;
+        this.state = 'idle';
+        this.el.sceneEl.emit('car-departed');
       }
     }
   },

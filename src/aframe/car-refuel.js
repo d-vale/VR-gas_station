@@ -18,7 +18,13 @@ AFRAME.registerComponent('car-refuel', {
     this.onMouseDown = this.onMouseDown.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
 
-    this._onFuelType = (e) => { this.requiredFuelType = e.detail.fuelType; };
+    this._onFuelType = (e) => {
+      this.requiredFuelType = e.detail.fuelType;
+      this._fuelFullEmitted = false;
+      if (this.data.gauge) {
+        this.data.gauge.setAttribute('fuel-gauge', 'level', 0);
+      }
+    };
     this.el.sceneEl.addEventListener('car-fuel-type', this._onFuelType);
 
     this.el.addEventListener('mousedown', this.onMouseDown);
