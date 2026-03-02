@@ -3,7 +3,6 @@
   import TheOnboarding from './components/TheOnboarding.vue';
   import TheScene from './components/TheScene.vue';
 
-  const scale = ref(1);
   const loaded = ref(false);
 </script>
 

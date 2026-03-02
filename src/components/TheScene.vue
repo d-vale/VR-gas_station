@@ -15,6 +15,7 @@ const allAssetsLoaded = ref(false);
 <template>
   <a-scene outline="enabled: false">
     <a-assets @loaded="allAssetsLoaded = true">
+      <!-- Pompes -->
       <a-asset-item id="gas-station"  src="assets/small_red_gas_station/scene.gltf"></a-asset-item>
       <a-asset-item id="pompe95"      src="assets/pompe95.glb"></a-asset-item>
       <a-asset-item id="pompe95plus"  src="assets/pompe95+.glb"></a-asset-item>
@@ -27,13 +28,13 @@ const allAssetsLoaded = ref(false);
     <a-sky color="#050510"></a-sky>
     <!-- Lumière ambiante très faible, teinte nuit bleue -->
     <a-entity light="type: ambient; intensity: 0.1; color: #2244aa"></a-entity>
-
     <!-- Lumière de lune : douce et froide -->
     <a-entity
       light="type: directional; intensity: 0.25; color: #aabbdd"
       position="-5 15 3"
     ></a-entity>
 
+    <!-- Sons -->
     <a-entity id="snd-engine" sound="src: url(assets/sounds/engine.mp3);      loop: true;  autoplay: false; positional: false"></a-entity>
     <a-entity id="snd-pump"   sound="src: url(assets/sounds/pump.mp3);        loop: true;  autoplay: false; positional: false"></a-entity>
     <a-entity id="snd-error"  sound="src: url(assets/sounds/error.mp3);       loop: false; autoplay: false; positional: false"></a-entity>
@@ -43,10 +44,7 @@ const allAssetsLoaded = ref(false);
     <TheGasStation :assetsLoaded="allAssetsLoaded" />
     <TheRedCar :assetsLoaded="allAssetsLoaded" />
 
-    <a-entity
-      score-board="timerDuration: 30000"
-      look-at="yOnly: true"
-      position="5 3.665 -5"
-    ></a-entity>
+    <!-- Scoreboard -->
+    <a-entity score-board="timerDuration: 30000" look-at="yOnly: true" position="5 3.665 -5" ></a-entity>
   </a-scene>
 </template>
