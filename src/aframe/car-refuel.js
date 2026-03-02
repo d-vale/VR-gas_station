@@ -1,8 +1,12 @@
 const PUMP_ID_TO_TYPE = {
-  'hand-pompe95':     '95',
-  'hand-pompe95plus': '95+',
-  'hand-pompeDisel':  'Diesel',
-  'hand-pompeLPG':    'LPG',
+  'hand-pompe95':        '95',
+  'hand-pompe95plus':    '95+',
+  'hand-pompeDisel':     'Diesel',
+  'hand-pompeLPG':       'LPG',
+  'vr-hand-pompe95':     '95',
+  'vr-hand-pompe95plus': '95+',
+  'vr-hand-pompeDisel':  'Diesel',
+  'vr-hand-pompeLPG':    'LPG',
 };
 
 AFRAME.registerComponent('car-refuel', {
@@ -68,8 +72,11 @@ AFRAME.registerComponent('car-refuel', {
   },
 
   _isPumpHeld: function () {
-    const heldPumps = document.querySelectorAll('[id^="hand-pompe"]');
-    for (const p of heldPumps) {
+    const allPumps = [
+      ...document.querySelectorAll('[id^="hand-pompe"]'),
+      ...document.querySelectorAll('[id^="vr-hand-pompe"]'),
+    ];
+    for (const p of allPumps) {
       if (p.getAttribute('visible') === true) {
         const pumpType = PUMP_ID_TO_TYPE[p.id];
         return pumpType === this.requiredFuelType;

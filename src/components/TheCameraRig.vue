@@ -34,10 +34,38 @@ defineProps({ assetsLoaded: Boolean });
       ></a-entity>
       <a-entity id="dummy-hand-right" position="0.3 -0.4 -0.5">
         <template v-if="assetsLoaded">
-          <a-entity id="hand-pompe95"     gltf-model="#pompe95"     visible="false" scale="0.3 0.3 0.3" position="-1.280 -0.110 1.620" rotation="0 90 0"></a-entity>
-          <a-entity id="hand-pompe95plus" gltf-model="#pompe95plus" visible="false" scale="0.3 0.3 0.3" position="-1.190 -0.110 1.620" rotation="0 90 0"></a-entity>
-          <a-entity id="hand-pompeDisel"  gltf-model="#pompeDisel"  visible="false" scale="0.3 0.3 0.3" position="-1.100 -0.110 1.620" rotation="0 90 0"></a-entity>
-          <a-entity id="hand-pompeLPG"    gltf-model="#pompeLPG"    visible="false" scale="0.3 0.3 0.3" position="-1.000 -0.110 1.620" rotation="0 90 0"></a-entity>
+          <a-entity
+            id="hand-pompe95"
+            gltf-model="#pompe95"
+            visible="false"
+            scale="0.3 0.3 0.3"
+            position="-1.280 -0.110 1.620"
+            rotation="0 90 0"
+          ></a-entity>
+          <a-entity
+            id="hand-pompe95plus"
+            gltf-model="#pompe95plus"
+            visible="false"
+            scale="0.3 0.3 0.3"
+            position="-1.190 -0.110 1.620"
+            rotation="0 90 0"
+          ></a-entity>
+          <a-entity
+            id="hand-pompeDisel"
+            gltf-model="#pompeDisel"
+            visible="false"
+            scale="0.3 0.3 0.3"
+            position="-1.100 -0.110 1.620"
+            rotation="0 90 0"
+          ></a-entity>
+          <a-entity
+            id="hand-pompeLPG"
+            gltf-model="#pompeLPG"
+            visible="false"
+            scale="0.3 0.3 0.3"
+            position="-1.000 -0.110 1.620"
+            rotation="0 90 0"
+          ></a-entity>
         </template>
       </a-entity>
       <a-entity id="dummy-hand-left" position="-0.3 -0.4 -0.5"></a-entity>
@@ -73,6 +101,40 @@ defineProps({ assetsLoaded: Boolean });
         radius="0.02"
         visible="false"
       ></a-sphere>
+      <template v-if="assetsLoaded">
+        <a-entity
+          id="vr-hand-pompe95"
+          gltf-model="#pompe95"
+          visible="false"
+          scale="1 1 1"
+          position="-3.470 2.057 3.930"
+          rotation="0 90 -45"
+        ></a-entity>
+        <a-entity
+          id="vr-hand-pompe95plus"
+          gltf-model="#pompe95plus"
+          visible="false"
+          scale="1 1 1"
+          position="-3.163 2.035 3.944"
+          rotation="0 90 -45"
+        ></a-entity>
+        <a-entity
+          id="vr-hand-pompeDisel"
+          gltf-model="#pompeDisel"
+          visible="false"
+          scale="1 1 1"
+          position="-2.857 2.043 3.943"
+          rotation="0 90 -45"
+        ></a-entity>
+        <a-entity
+          id="vr-hand-pompeLPG"
+          gltf-model="#pompeLPG"
+          visible="false"
+          scale="1 1 1"
+          position="-2.532 1.988 3.941"
+          rotation="0 90 -45"
+        ></a-entity>
+      </template>
     </a-entity>
   </a-entity>
 </template>

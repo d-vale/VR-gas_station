@@ -17,10 +17,10 @@ defineProps({ assetsLoaded: Boolean });
         ></a-entity>
 
         <!-- Pompes -->
-        <a-entity id="scene-pompe95"     outline-on-event clickable gltf-model="#pompe95"     pump-grab="handPump: #hand-pompe95"     visible="true"  position="0 0 -5" scale="1 1 1"></a-entity>
-        <a-entity id="scene-pompe95plus" outline-on-event clickable gltf-model="#pompe95plus"  pump-grab="handPump: #hand-pompe95plus" visible="true"  position="0 0 -5" scale="1 1 1"></a-entity>
-        <a-entity id="scene-pompeDisel"  outline-on-event clickable gltf-model="#pompeDisel"   pump-grab="handPump: #hand-pompeDisel"  visible="true"  position="0 0 -5" scale="1 1 1"></a-entity>
-        <a-entity id="scene-pompeLPG"    outline-on-event clickable gltf-model="#pompeLPG"     pump-grab="handPump: #hand-pompeLPG"    visible="true"  position="0 0 -5" scale="1 1 1"></a-entity>
+        <a-entity id="scene-pompe95"     outline-on-event clickable gltf-model="#pompe95"     pump-grab="handPump: #hand-pompe95;     vrHandPump: #vr-hand-pompe95"     visible="true"  position="0 0 -5" scale="1 1 1"></a-entity>
+        <a-entity id="scene-pompe95plus" outline-on-event clickable gltf-model="#pompe95plus"  pump-grab="handPump: #hand-pompe95plus; vrHandPump: #vr-hand-pompe95plus" visible="true"  position="0 0 -5" scale="1 1 1"></a-entity>
+        <a-entity id="scene-pompeDisel"  outline-on-event clickable gltf-model="#pompeDisel"   pump-grab="handPump: #hand-pompeDisel;  vrHandPump: #vr-hand-pompeDisel"  visible="true"  position="0 0 -5" scale="1 1 1"></a-entity>
+        <a-entity id="scene-pompeLPG"    outline-on-event clickable gltf-model="#pompeLPG"     pump-grab="handPump: #hand-pompeLPG;    vrHandPump: #vr-hand-pompeLPG"    visible="true"  position="0 0 -5" scale="1 1 1"></a-entity>
 
         <!-- Lumière 1 : avant-gauche -->
         <a-entity
