@@ -4,8 +4,6 @@
 
 Simulation immersive de station-service en WebXR. Le joueur ravitaille des voitures avec le bon type de carburant avant l'expiration d'un minuteur, depuis un navigateur — sans installation, sur desktop, mobile ou casque VR.
 
----
-
 ## Gameplay
 
 1. **Une voiture arrive** et se gare à la pompe. Un type de carburant est tiré aléatoirement (Sans-plomb 95, 95+, Diesel, LPG).
@@ -21,8 +19,6 @@ Simulation immersive de station-service en WebXR. Le joueur ravitaille des voitu
 | Diesel | CHF 70 |
 | LPG | CHF 60 |
 
----
-
 ## Stack technique
 
 | Couche | Technologie |
@@ -35,8 +31,6 @@ Simulation immersive de station-service en WebXR. Le joueur ravitaille des voitu
 | Input VR | aframe-extras + blink-controls personnalisé |
 
 A-Frame est chargé comme script statique dans `index.html` (pas via npm). `src/three.js` ré-exporte `window.THREE` pour permettre la syntaxe ES module dans le reste du code.
-
----
 
 ## Installation
 
@@ -58,8 +52,6 @@ npm run build
 npm run preview
 ```
 
----
-
 ## Test sur casque VR
 
 1. Lancer `npm run dev-expose`
@@ -75,8 +67,6 @@ npm run preview
 | Desktop | WASD / flèches + souris (pointer lock) | Clic |
 | Mobile | Gestures tactiles | Tap |
 | VR | Main gauche : téléportation blink + rotation snap | Main droite : raycaster laser / trigger pour saisir |
-
----
 
 ## Structure du projet
 
@@ -102,8 +92,6 @@ public/
 ├── lib/                    # A-Frame + aframe-extras (scripts pré-compilés)
 └── assets/                 # Modèles GLB/GLTF, textures, sons
 ```
-
----
 
 ## Contexte académique
 
