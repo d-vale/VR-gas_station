@@ -38,17 +38,26 @@ AFRAME.registerComponent('car-refuel', {
     this._onCarTimeout = () => {
       this.filling = false;
       this._fuelFullEmitted = true;
+      this._stopSound('pump');
     };
     this.el.sceneEl.addEventListener('car-timeout', this._onCarTimeout);
   },
 
   onMouseDown: function () {
-    if (!this._isPumpHeld()) return;
-    this.filling = true;
+    const heldType = this._heldPumpType();
+    if (heldType === null) return;
+
+    if (heldType === this.requiredFuelType) {
+      this.filling = true;
+      this._playSound('pump');
+    } else {
+      this._playSound('error');
+    }
   },
 
   onMouseUp: function () {
     this.filling = false;
+    this._stopSound('pump');
   },
 
   tick: function (time, delta) {
@@ -60,6 +69,7 @@ AFRAME.registerComponent('car-refuel', {
     const currentLevel = gauge.getAttribute('fuel-gauge').level;
     if (currentLevel >= 1) {
       this.filling = false;
+      this._stopSound('pump');
       if (!this._fuelFullEmitted) {
         this._fuelFullEmitted = true;
         this.el.sceneEl.emit('fuel-full');
@@ -71,18 +81,29 @@ AFRAME.registerComponent('car-refuel', {
     gauge.setAttribute('fuel-gauge', 'level', Math.min(1, currentLevel + increment));
   },
 
-  _isPumpHeld: function () {
+  _heldPumpType: function () {
     const allPumps = [
       ...document.querySelectorAll('[id^="hand-pompe"]'),
       ...document.querySelectorAll('[id^="vr-hand-pompe"]'),
     ];
     for (const p of allPumps) {
       if (p.getAttribute('visible') === true) {
-        const pumpType = PUMP_ID_TO_TYPE[p.id];
-        return pumpType === this.requiredFuelType;
+        return PUMP_ID_TO_TYPE[p.id] || null;
       }
     }
-    return false;
+    return null;
+  },
+
+  _playSound: function (name) {
+    const el = this.el.sceneEl.querySelector('#snd-' + name);
+    if (!el || !el.components.sound) return;
+    el.components.sound.playSound();
+  },
+
+  _stopSound: function (name) {
+    const el = this.el.sceneEl.querySelector('#snd-' + name);
+    if (!el || !el.components.sound) return;
+    el.components.sound.stopSound();
   },
 
   remove: function () {

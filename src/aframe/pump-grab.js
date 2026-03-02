@@ -84,6 +84,7 @@ AFRAME.registerComponent('pump-grab', {
     this.el.setAttribute('visible', false);
     this.el.removeAttribute('outline-on-event');
     handPump.setAttribute('visible', true);
+    this._playSound('metal');
   },
 
   onTrigger: function (hand) {
@@ -117,6 +118,13 @@ AFRAME.registerComponent('pump-grab', {
     this.el.setAttribute('visible', false);
     this.el.removeAttribute('outline-on-event');
     vrHandPump.setAttribute('visible', true);
+    this._playSound('metal');
+  },
+
+  _playSound: function (name) {
+    const el = this.el.sceneEl.querySelector('#snd-' + name);
+    if (!el || !el.components.sound) return;
+    el.components.sound.playSound();
   },
 
   remove: function () {

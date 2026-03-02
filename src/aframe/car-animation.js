@@ -1,5 +1,17 @@
 function smoothstep(t) { return t * t * (3 - 2 * t); }
 
+function playSound(sceneEl, name) {
+  const el = sceneEl.querySelector('#snd-' + name);
+  if (!el || !el.components.sound) return;
+  el.components.sound.playSound();
+}
+
+function stopSound(sceneEl, name) {
+  const el = sceneEl.querySelector('#snd-' + name);
+  if (!el || !el.components.sound) return;
+  el.components.sound.stopSound();
+}
+
 // ─── Arrivée ───────────────────────────────────────────────────────────────
 
 const FUEL_TYPES = ['95', '95+', 'Diesel', 'LPG'];
@@ -61,6 +73,7 @@ AFRAME.registerComponent('car-drive', {
     this.el.object3D.rotation.set(0, 0, 0);
     this.el.sceneEl.emit('car-fuel-type', { fuelType: this.fuelType });
     this.el.object3D.visible = true;
+    playSound(this.el.sceneEl, 'engine');
   },
   _beginPhase2: function () {
     this.state = 'phase2'; this.progress = 0;
@@ -98,6 +111,7 @@ AFRAME.registerComponent('car-drive', {
         this.state = 'done';
         obj.position.copy(this.PHASE3_END);
         obj.rotation.set(0, Math.PI / 2, 0);
+        stopSound(this.el.sceneEl, 'engine');
         this.el.sceneEl.emit('car-at-pump');
       }
     }
@@ -150,6 +164,7 @@ AFRAME.registerComponent('car-depart', {
     this.state = 'phase1'; this.progress = 0;
     this.el.object3D.position.copy(this.PHASE1_START);
     this.el.object3D.rotation.set(0, Math.PI / 2, 0);
+    playSound(this.el.sceneEl, 'engine');
   },
   _beginPhase2: function () {
     this.state = 'phase2'; this.progress = 0;
@@ -188,6 +203,7 @@ AFRAME.registerComponent('car-depart', {
         obj.rotation.set(0, Math.PI, 0);
         this.el.object3D.visible = false;
         this.state = 'idle';
+        stopSound(this.el.sceneEl, 'engine');
         this.el.sceneEl.emit('car-departed');
       }
     }

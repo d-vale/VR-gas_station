@@ -34,6 +34,11 @@ const allAssetsLoaded = ref(false);
       position="-5 15 3"
     ></a-entity>
 
+    <a-entity id="snd-engine" sound="src: url(assets/sounds/engine.mp3);      loop: true;  autoplay: false; positional: false"></a-entity>
+    <a-entity id="snd-pump"   sound="src: url(assets/sounds/pump.mp3);        loop: true;  autoplay: false; positional: false"></a-entity>
+    <a-entity id="snd-error"  sound="src: url(assets/sounds/error.mp3);       loop: false; autoplay: false; positional: false"></a-entity>
+    <a-entity id="snd-metal"  sound="src: url(assets/sounds/metal-clank.mp3); loop: false; autoplay: false; positional: false"></a-entity>
+
     <TheCameraRig :assetsLoaded="allAssetsLoaded" />
     <TheGasStation :assetsLoaded="allAssetsLoaded" />
     <TheRedCar :assetsLoaded="allAssetsLoaded" />
