@@ -86,6 +86,7 @@ defineProps({ assetsLoaded: Boolean });
         id="hand-left-collider"
         radius="0.02"
         visible="false"
+        color="green"
       ></a-sphere>
     </a-entity>
 
@@ -100,6 +101,7 @@ defineProps({ assetsLoaded: Boolean });
         id="hand-right-collider"
         radius="0.02"
         visible="false"
+        color="green"
       ></a-sphere>
       <template v-if="assetsLoaded">
         <a-entity

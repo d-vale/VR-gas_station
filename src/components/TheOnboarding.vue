@@ -20,78 +20,51 @@
   <div id="onboarding" v-if="showOnboarding">
     <div>
       <h1>Gas station VR</h1>
-      <p v-if="!loaded">loading...</p>
-      <button v-if="loaded" @click="enterScene()">Enter scene</button>
+      <p class="description">Bienvenue à la station-service ! Des voitures arrivent, à toi de faire le plein avant qu'elles repartent.</p>
+      <p v-if="!loaded">Chargement...</p>
+      <button v-if="loaded" @click="enterScene()">Entrer dans la scène</button>
+
       <div class="licences">
-        <section>
-          <h4>Movement modes support</h4>
+        <section id="jeu">
+          <h4>Comment jouer</h4>
           <ul>
-            <li>
-              Desktop – Keyboard for move (WASD or Arrows keys) + Mouse for look
-              control (Drag and drop)
-            </li>
-            <li>
-              Mobile – 1x Finger touch to go forward + 2x Fingers touch to go
-              backward + Gaze cursor for click
-            </li>
-            <li>
-              VR/AR – walk + Teleport (Grip for grab and laser for
-              click) + Gaze cursor for click
-            </li>
+            <li>Une voiture arrive avec un type de carburant requis affiché au-dessus du véhicule</li>
+            <li>Attrape la bonne pompe et approche-la de la voiture pour faire le plein</li>
+            <li>Tu as 30 secondes avant que la voiture reparte sans payer</li>
+            <li>Chaque plein réussi te rapporte des CHF selon le prix du carburant</li>
           </ul>
         </section>
-        <section>
-          <h4>Source code</h4>
-          <blockquote><a href="https://github.com/Chabloz/a-frame-vite-vue-boilerplate">Github repo</a></blockquote>
+
+        <section id="controles">
+          <h4>Modes de contrôle</h4>
+          <ul>
+            <li>Desktop – WASD/Flèches pour bouger + Drag souris pour regarder</li>
+            <li>Mobile – 1 doigt = avancer, 2 doigts = reculer + Gaze cursor</li>
+            <li>VR/AR – Déplacement + Téléportation (gâchette gauche) + Laser (main droite)</li>
+          </ul>
         </section>
+
+        <section id="credits">
+          <h4>Source code</h4>
+          <blockquote><a href="https://github.com/d-vale/VR-gas_station">Github repo</a></blockquote>
+        </section>
+
         <dl>
-          <dt>
-            <i>Included</i>
-          </dt>
-          <dt>
-            <a href="https://github.com/c-frame/aframe-extras" target="_blank">aframe-extras</a>
-          </dt><dd>
-            <a href="https://github.com/c-frame/aframe-extras/blob/master/LICENSE" target="_blank">MIT License</a>
-          </dd>
+          <dt><i>Librairies incluses</i></dt>
+          <dt><a href="https://github.com/c-frame/aframe-extras" target="_blank">aframe-extras</a></dt>
+          <dd><a href="https://github.com/c-frame/aframe-extras/blob/master/LICENSE" target="_blank">MIT License</a></dd>
 
-          <dt>
-            <a href="https://github.com/c-frame/physx" target="_blank">aframe physx</a>
-          </dt><dd>
-            <a href="https://github.com/c-frame/aframe-extras/blob/master/LICENSE" target="_blank">MIT License</a>
-          </dd>
+          <dt><a href="https://github.com/c-frame/physx" target="_blank">aframe-physx</a></dt>
+          <dd><a href="https://github.com/c-frame/physx/blob/master/LICENSE" target="_blank">MIT License</a></dd>
 
-          <dt>
-            <a href="https://github.com/jure/aframe-blink-controls/" target="_blank">aframe-blink-controls</a>
-          </dt><dd>
-            <a href="https://github.com/jure/aframe-blink-controls/blob/main/LICENSE" target="_blank">MIT License</a>
-          </dd>
+          <dt><a href="https://github.com/jure/aframe-blink-controls/" target="_blank">aframe-blink-controls</a></dt>
+          <dd><a href="https://github.com/jure/aframe-blink-controls/blob/main/LICENSE" target="_blank">MIT License</a></dd>
 
-          <dt>
-            <a href="https://github.com/diarmidmackenzie/aframe-multi-camera/" target="_blank">aframe-multi-camera</a>
-          </dt><dd>
-            <a href="https://github.com/diarmidmackenzie/aframe-multi-camera/blob/main/LICENSE" target="_blank">MIT License</a>
-          </dd>
+          <dt><a href="https://github.com/diarmidmackenzie/aframe-multi-camera/" target="_blank">aframe-multi-camera</a></dt>
+          <dd><a href="https://github.com/diarmidmackenzie/aframe-multi-camera/blob/main/LICENSE" target="_blank">MIT License</a></dd>
 
-          <dt>
-            <a href=" https://github.com/AdaRoseCannon/aframe-xr-boilerplate" target="_blank">simple-navmesh-constraint</a>
-          </dt><dd>
-            By Ada Rose Cannon under MIT License
-          </dd>
-
-          <dt>
-            <a href="https://sketchfab.com/3d-models/vr-gallery-1ac32ed62fdf424498acc146fad31f7e" target="_blank">VR Gallery</a>
-          </dt><dd>
-            by <a href="https://sketchfab.com/mvrc.art" target="_blank">Maxim Mavrichev</a>
-            under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
-          </dd>
-
-          <dt>
-            <a href="https://sketchfab.com/3d-models/3d-gallery-for-vr-projects-68f77ed8558c4bd59e0a13e2cc9d1fd1" target="_blank">Physic room model</a>
-          </dt><dd>
-            by <a href="https://sketchfab.com/tekuto1s" target="_blank">tekuto1s</a>
-            under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
-          </dd>
-
+          <dt><a href="https://github.com/AdaRoseCannon/aframe-xr-boilerplate" target="_blank">simple-navmesh-constraint</a></dt>
+          <dd>By Ada Rose Cannon under MIT License</dd>
         </dl>
       </div>
     </div>
@@ -100,6 +73,11 @@
 
 <style scoped>
   h1 { font-size: 1.5rem }
+  .description {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #aaa;
+  }
   a {
     color: #eee;
     text-decoration: none;
@@ -118,6 +96,10 @@
   .licences dd {
     margin-left: 0;
     font-size: 0.8rem;
+  }
+  .licences li {
+    font-size: 1rem;
+    text-align: left;
   }
 
   #onboarding {
@@ -151,8 +133,4 @@
     border: none;
     cursor: pointer;
   }
-</style>#onboarding li {
-#onboarding li {
-  font-size: 1rem;
-  text-align: left;
-}
+</style>
