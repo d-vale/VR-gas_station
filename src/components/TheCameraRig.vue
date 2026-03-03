@@ -27,9 +27,9 @@ defineProps({ assetsLoaded: Boolean });
         geometry="primitive: circle; radius: 0.0003;"
         material="shader: flat; color: white;"
         cursor
-        raycaster="far: 4; objects: [clickable]; showLine: false;"
+        _raycaster="far: 4; objects: [clickable]; showLine: false;"
         position="0 0 -0.1"
-        disable-in-vr="component: raycaster; disableInAR: false;"
+        _disable-in-vr="component: raycaster; disableInAR: false;"
         hide-in-vr="hideInAR: false"
       ></a-entity>
       <a-entity id="dummy-hand-right" position="0.3 -0.4 -0.5">
@@ -94,7 +94,7 @@ defineProps({ assetsLoaded: Boolean });
       id="hand-right"
       hand-controls="hand: right"
       laser-controls="hand: right"
-      raycaster="far: 4; objects: [clickable]; showLine: true;"
+      _raycaster="far: 4; objects: [clickable]; showLine: true;"
       position="0 1.5 0"
     >
       <a-sphere

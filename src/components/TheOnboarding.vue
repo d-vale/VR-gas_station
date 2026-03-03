@@ -1,7 +1,7 @@
 <script setup>
-  import { ref } from 'vue';
+  import { ref, watch } from 'vue';
 
-  defineProps({
+  const props = defineProps({
     loaded: Boolean,
   });
 
@@ -14,6 +14,16 @@
     }
     document.querySelector('a-scene').emit('enter-scene');
   }
+
+  const loadedDelayed = ref(false);
+
+  watch(() => props.loaded, (newVal) => {
+    if (newVal) {
+      setTimeout(() => {
+        loadedDelayed.value = true;
+      }, 20000);
+    }
+  });
 </script>
 
 <template>
@@ -21,8 +31,8 @@
     <div>
       <h1>Gas station VR</h1>
       <p class="description">Bienvenue à la station-service ! Des voitures arrivent, à toi de faire le plein avant qu'elles repartent.</p>
-      <p v-if="!loaded">Chargement...</p>
-      <button v-if="loaded" @click="enterScene()">Entrer dans la scène</button>
+      <p v-if="!loadedDelayed">Chargement...</p>
+      <button v-if="loadedDelayed" @click="enterScene()">Entrer dans la scène</button>
 
       <div class="licences">
         <section id="jeu">

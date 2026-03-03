@@ -47,7 +47,7 @@ AFRAME.registerComponent('score-board', {
       this.timeLeft    = 0;
       this.timerActive = false;
       this._updateTimer(0);
-      this._setStatus('Raté !');
+      this._setStatus('Trop tard !');
       this.el.sceneEl.emit('car-timeout');
       return;
     }

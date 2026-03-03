@@ -21,6 +21,16 @@ defineProps({ assetsLoaded: Boolean });
         car-refuel="gauge: #car-fuel-gauge"
       ></a-entity>
 
+      <!-- Hitbox de remplissage VR (légèrement plus grande que la voiture) -->
+      <a-box
+        id="car-hitbox"
+        position="0 0.9 0"
+        width="5"
+        height="2"
+        depth="3"
+        visible="false"
+      ></a-box>
+
       <!-- Jauge de carburant -->
       <a-entity
         id="car-fuel-gauge"
