@@ -11,27 +11,22 @@ AFRAME.registerComponent('pump-grab', {
 
     this.isInVR = false;
     this.handRightInRange = false;
-    this.handLeftInRange  = false;
 
     this._posHand = new THREE.Vector3();
     this._posEl   = new THREE.Vector3();
     this._box     = new THREE.Box3();
 
     this._onEnterVR = () => { this.isInVR = true; };
-    this._onExitVR  = () => { this.isInVR = false; this.handRightInRange = false; this.handLeftInRange = false; };
+    this._onExitVR  = () => { this.isInVR = false; this.handRightInRange = false; };
     this.el.sceneEl.addEventListener('enter-vr', this._onEnterVR);
     this.el.sceneEl.addEventListener('exit-vr',  this._onExitVR);
 
-    this._handRightEl    = document.querySelector('#hand-right');
-    this._handLeftEl     = document.querySelector('#hand-left');
-    this._colliderRight  = document.querySelector('#hand-right-collider');
-    this._colliderLeft   = document.querySelector('#hand-left-collider');
+    this._handRightEl   = document.querySelector('#hand-right');
+    this._colliderRight = document.querySelector('#hand-right-collider');
 
-    this._onTriggerRight = () => this.onTrigger('right');
-    this._onTriggerLeft  = () => this.onTrigger('left');
+    this._onTrigger = () => this.onTrigger();
 
-    if (this._handRightEl) this._handRightEl.addEventListener('triggerdown', this._onTriggerRight);
-    if (this._handLeftEl)  this._handLeftEl.addEventListener('triggerdown',  this._onTriggerLeft);
+    if (this._handRightEl) this._handRightEl.addEventListener('triggerdown', this._onTrigger);
 
     this.tick = AFRAME.utils.throttleTick(this.tick, 100, this);
   },
@@ -52,11 +47,6 @@ AFRAME.registerComponent('pump-grab', {
     if (this._colliderRight) {
       this._colliderRight.object3D.getWorldPosition(this._posHand);
       this.handRightInRange = this._posHand.distanceTo(this._posEl) < this.data.radius;
-    }
-
-    if (this._colliderLeft) {
-      this._colliderLeft.object3D.getWorldPosition(this._posHand);
-      this.handLeftInRange = this._posHand.distanceTo(this._posEl) < this.data.radius;
     }
   },
 
@@ -87,11 +77,9 @@ AFRAME.registerComponent('pump-grab', {
     this._playSound('metal');
   },
 
-  onTrigger: function (hand) {
+  onTrigger: function () {
     if (!this.isInVR) return;
-
-    const inRange = hand === 'right' ? this.handRightInRange : this.handLeftInRange;
-    if (!inRange) return;
+    if (!this.handRightInRange) return;
 
     const vrHandPump = this.data.vrHandPump;
     if (!vrHandPump) return;
@@ -131,7 +119,6 @@ AFRAME.registerComponent('pump-grab', {
     this.el.removeEventListener('click', this.onClick);
     this.el.sceneEl.removeEventListener('enter-vr', this._onEnterVR);
     this.el.sceneEl.removeEventListener('exit-vr',  this._onExitVR);
-    if (this._handRightEl) this._handRightEl.removeEventListener('triggerdown', this._onTriggerRight);
-    if (this._handLeftEl)  this._handLeftEl.removeEventListener('triggerdown',  this._onTriggerLeft);
+    if (this._handRightEl) this._handRightEl.removeEventListener('triggerdown', this._onTrigger);
   }
 });
